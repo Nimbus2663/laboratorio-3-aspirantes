@@ -15,7 +15,7 @@ Cierre de Moodle: 02/10/2026 a las 00:00.
 - Docente: Ing. Irina Fong
 - Repositorio: https://github.com/Nimbus2663/laboratorio-3-aspirantes
 
-Documentación organizada según «Directrices para entrega del Repositorio.pdf», consultado en Moodle. Repositorio: https://github.com/Nimbus2663/laboratorio-3-aspirantes
+Documentación organizada según «Directrices para entrega del Repositorio.pdf», consultado en Moodle. Repositorio publicado en GitHub.
 
 ## Contenido del Repositorio
 
@@ -27,7 +27,7 @@ Crear un formulario HTML5 con Bootstrap 5.3.8 y procesarlo con PHP, utilizando v
 - Interfaz: HTML5 y Bootstrap 5.3.8.
 - Servidor local: XAMPP con Apache 2.4.58.
 - Base de datos: no se utiliza. Las fotos se guardan en disco y los datos de texto en la sesión.
-- Control de versiones: Git y GitHub.
+- Control de versiones previsto: Git y GitHub. El repositorio está publicado.
 
 ## Capturas de Pantalla y Problemas
 
@@ -63,6 +63,7 @@ TallerAspirantes/
   procesar.php              Validación, carga y resultado
   router.php                Enrutador para el servidor de desarrollo
   includes/
+    formulario.php          Formulario incluido desde index.php
     funciones.php           Sesión, escape, normalización y edad
     header.php              Metadatos, menú y migas de pan
     footer.php              Identidad, contacto y año dinámico
@@ -79,7 +80,7 @@ TallerAspirantes/
 
 ### Ejecución con XAMPP o WAMP
 
-Descarga y descomprime el ZIP. También puedes clonarlo mediante `git clone https://github.com/Nimbus2663/laboratorio-3-aspirantes.git`.
+Descarga y descomprime el ZIP. Cuando el repositorio esté publicado, también podrás clonarlo mediante `git clone URL_DEL_REPOSITORIO`, reemplazando ese marcador por su dirección real.
 
 1. Copia la carpeta TallerAspirantes en `C:\xampp\htdocs\` o `C:\wamp64\www\`.
 2. Activa Apache. No hace falta MySQL.
@@ -102,7 +103,7 @@ Abre `http://127.0.0.1:8080/`. Detén el servidor con Ctrl+C. Es indispensable i
 
 ## Cómo funciona, paso a paso
 
-1. `index.php` carga las funciones y usa `include` para el header y footer. Dentro de `main > section` presenta el formulario.
+1. `index.php` carga las funciones y usa `include` para el header y footer. Dentro de `main > section` incluye `includes/formulario.php`.
 2. `method="post"` envía los datos a `procesar.php`. `enctype="multipart/form-data"` permite enviar la foto. GET se usa para abrir las páginas y consultar el resultado de la sesión.
 3. `campo()` verifica que cada valor sea texto y aplica `trim()` y `strip_tags()`. La validación en PHP se ejecuta aunque el usuario omita las restricciones HTML.
 4. `mb_convert_case(..., MB_CASE_TITLE, 'UTF-8')` normaliza nombres con tildes. Es la alternativa Unicode a `ucwords(strtolower(...))`. `strtoupper()` normaliza la identificación.
@@ -128,7 +129,7 @@ La función de mayúsculas no agrega tildes: `sofía` se convierte en `Sofía`, 
 | Foto guardada sin base de datos | move_uploaded_file |
 | Carpeta inaccesible por navegador | uploaded_files/.htaccess o router.php |
 | Footer modular y año dinámico | includes/footer.php y date('Y') |
-| README y repositorio | Esta guía en Markdown, capturas y .gitignore; repositorio en GitHub |
+| README y repositorio | Esta guía en Markdown, capturas y .gitignore; publicado en GitHub |
 
 ## Pruebas que puedes demostrar
 
@@ -154,6 +155,10 @@ Usa datos ficticios y una imagen de prueba para las evidencias. No subas fotos p
 - Escape HTML: https://www.php.net/manual/en/function.htmlspecialchars.php
 - Autorización Apache: https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html#require
 
+## Actualización del 07/10/2026
+
+El formulario está separado en `includes/formulario.php` y se carga mediante `include` desde `index.php`, al igual que la navegación y el pie de página. Se conserva el funcionamiento del registro.
+
 ## Verificación realizada
 
-Los siete archivos PHP pasaron la comprobación de sintaxis. En el servidor integrado de PHP con router se comprobaron el registro con foto, la normalización, la actualización sin duplicados, cinco rutas bloqueadas y diez envíos inválidos. Se comprobaron además ocho casos de fechas y Unicode. El 1 de octubre de 2026 se instaló también en C:\xampp\htdocs\TallerAspirantes y se probó con Apache: registro correcto, normalización, actualización sin duplicar fotografías, diez envíos inválidos y bloqueo HTTP 403 de uploaded_files, una foto real de prueba e includes. No fue necesario cambiar la configuración de Apache.
+Los ocho archivos PHP pasaron la comprobación de sintaxis. En el servidor integrado de PHP con router se comprobaron el registro con foto, la normalización, la actualización sin duplicados, cinco rutas bloqueadas y diez envíos inválidos. Se comprobaron además ocho casos de fechas y Unicode. El 1 de octubre de 2026 se instaló también en C:\xampp\htdocs\TallerAspirantes y se probó con Apache: registro correcto, normalización, actualización sin duplicar fotografías, diez envíos inválidos y bloqueo HTTP 403 de uploaded_files, una foto real de prueba e includes. No fue necesario cambiar la configuración de Apache.
